@@ -1,8 +1,10 @@
 import React from 'react'
-import { categorias } from '../data/Categorias'
 import Categoria from './Categoria'
+import useCafe from '../hooks/useCafe'
 
 const Sidebar = () => {
+
+    const {categorias} = useCafe()
   return (
     <aside className='md:w-72'>
         <div className='p-4'>

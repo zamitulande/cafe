@@ -1,15 +1,15 @@
 import React from 'react'
 import Productos from '../components/Productos'
-import {productos} from '../data/productos'
+import {productos as data} from '../data/productos'
 import useCafe from '../hooks/useCafe'
 
 const Inicio = () => {
 
-  const {hola}= useCafe()
-  console.log(hola)
+  const {categoriaActual}= useCafe()
+  const productos = data.filter(producto=> producto.categoria_id === categoriaActual.id)
   return (
     <>
-      <h1 className='text-4xl font-black'>Inicio</h1>
+      <h1 className='text-4xl font-black'>{categoriaActual.nombre}</h1>
       <p className='text-2xl my-10'>
           Elige y recibe tu pedido a continuacion
       </p>
