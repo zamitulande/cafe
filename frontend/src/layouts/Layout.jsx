@@ -4,6 +4,7 @@ import Modal from 'react-modal'
 import Resumen from '../components/Resumen'
 import Sidebar from '../components/Sidebar'
 import useCafe from '../hooks/useCafe'
+import ModalProducto from '../components/ModalProducto'
 
 const customStyles = {
   content: {
@@ -30,14 +31,9 @@ const Layout = () => {
         </main>
       <Resumen/>
     </div>
-      {modal && (
         <Modal isOpen={modal} style={customStyles} ariaHideApp={false}>
-          <p>Desde modal</p>
-          <button 
-             onClick={handleClickModal}
-          >Cerrar</button>
-        </Modal>
-      )}
+          <ModalProducto/>
+        </Modal>     
     </>
     
   )
