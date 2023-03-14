@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Log = () => {
   return (
@@ -41,6 +42,11 @@ const Log = () => {
              className=' bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold cursor-pointer'
          />
      </form>
+     <nav className=' mt-5'>
+        <Link to='/auth/registro'>
+            ¿No tienes cuenta?, Crea una cuenta
+        </Link>
+    </nav>
     </div>
     </>
   )

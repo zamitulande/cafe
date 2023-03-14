@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Registro = () => {
   return (
@@ -66,6 +67,11 @@ const Registro = () => {
             className=' bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold cursor-pointer'
         />
     </form>
+    <nav className=' mt-5'>
+        <Link to='/auth/login'>
+            ¿Ya tienes cuenta?, Inicia Sesión
+        </Link>
+    </nav>
    </div>
    </>
   )
