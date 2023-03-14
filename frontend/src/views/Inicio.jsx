@@ -1,8 +1,12 @@
 import React from 'react'
 import Productos from '../components/Productos'
 import {productos} from '../data/productos'
+import useCafe from '../hooks/useCafe'
 
 const Inicio = () => {
+
+  const {hola}= useCafe()
+  console.log(hola)
   return (
     <>
       <h1 className='text-4xl font-black'>Inicio</h1>
