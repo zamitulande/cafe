@@ -6,18 +6,24 @@ export const CafeProvider=({children})=>{
     
     const [categorias, setCategorias] = useState(categoriasDB);
     const [categoriaActual, setCategoriaActua] = useState(categorias[0])
+    const [modal, setModal] = useState(false)
 
     const handleClickCategoria=(id)=>{
        const categoria= categorias.filter(categoria => categoria.id === id)[0]
        setCategoriaActua(categoria)
     }
 
+    const handleClickModal=()=>{
+        setModal(!modal)
+    }
     return(
         <CafeContext.Provider
             value={{
                 categorias,
                 categoriaActual,
-                handleClickCategoria
+                handleClickCategoria,
+                modal,
+                handleClickModal,
             }}
         >{children}</CafeContext.Provider>
     )

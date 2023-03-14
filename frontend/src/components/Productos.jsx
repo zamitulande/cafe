@@ -1,7 +1,10 @@
 import React from 'react'
 import { formatoDinero } from '../helpers';
+import useCafe from '../hooks/useCafe';
 
 const Productos = ({producto}) => {
+
+  const {handleClickModal} = useCafe();
 
     const {nombre, precio, imagen, categoria_id, id} = producto;
   return (
@@ -15,7 +18,10 @@ const Productos = ({producto}) => {
         <div className='p-5'>
             <h3 className='text-2xl font-bold'>{nombre}</h3>
             <p className='mt-5 font-black text-4xl text-amber-500'>{formatoDinero(precio)}</p>
-            <button type='button' className=' bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold '>
+            <button type='button' 
+                    className=' bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold '
+                    onClick={()=>{handleClickModal()}}        
+            >
               Agregar
             </button>
         </div>
