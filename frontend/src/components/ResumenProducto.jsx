@@ -1,8 +1,10 @@
 import React from 'react'
 import { formatoDinero } from '../helpers';
+import useCafe from '../hooks/useCafe';
 
 const ResumenProducto = ({producto}) => {
 
+    const {handleEditarCantidad} = useCafe();
     const {id, nombre, precio, cantidad } = producto
     return (
         <div className="shadow space-y-1 p-4 bg-white">
@@ -21,7 +23,8 @@ const ResumenProducto = ({producto}) => {
             <button
               type="button"
               className="bg-sky-700 p-2 text-white rounded-md font-bold uppercase shadow-md text-center"
-            >
+              onClick={()=>handleEditarCantidad(id)}
+              >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"

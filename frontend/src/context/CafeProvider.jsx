@@ -24,7 +24,7 @@ export const CafeProvider=({children})=>{
         setProducto(producto)
     }
 
-    const handleAgregarPedido= ({categoria_id, imagen, ...producto})=>{
+    const handleAgregarPedido= ({categoria_id, ...producto})=>{
        
         if(pedido.some(pedidoState=>pedidoState.id === producto.id)){
             const pedidoActualizado = pedido.map(pedidoState=>pedidoState.id === producto.id ? producto : pedidoState)
@@ -34,6 +34,11 @@ export const CafeProvider=({children})=>{
             setPedido([...pedido, producto])
             toast.success('Agregado al Pedido')
         }
+    }
+    const handleEditarCantidad = id => {
+        const productoActualizar = pedido.filter(producto => producto.id === id)[0]
+        setProducto(productoActualizar)
+        setModal(!modal)
     }
     return(
         <CafeContext.Provider
@@ -46,7 +51,8 @@ export const CafeProvider=({children})=>{
                 handleSetProducto,
                 producto,
                 pedido,
-                handleAgregarPedido
+                handleAgregarPedido,
+                handleEditarCantidad
             }}
         >{children}</CafeContext.Provider>
     )
