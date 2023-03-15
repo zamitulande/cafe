@@ -1,4 +1,5 @@
 import CafeContext from "./CafeContext"
+import {toast} from 'react-toastify'
 import { categorias as categoriasDB } from '../data/Categorias'
 import { useState } from "react"
 
@@ -24,7 +25,15 @@ export const CafeProvider=({children})=>{
     }
 
     const handleAgregarPedido= ({categoria_id, imagen, ...producto})=>{
-        setPedido([...pedido, producto])
+       
+        if(pedido.some(pedidoState=>pedidoState.id === producto.id)){
+            const pedidoActualizado = pedido.map(pedidoState=>pedidoState.id === producto.id ? producto : pedidoState)
+           setPedido(pedidoActualizado)
+           toast.success('Pedido Actualizado')
+        }else{
+            setPedido([...pedido, producto])
+            toast.success('Agregado al Pedido')
+        }
     }
     return(
         <CafeContext.Provider

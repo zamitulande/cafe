@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useCafe from '../hooks/useCafe';
 import { formatoDinero } from '../helpers';
 
 const ModalProducto = () => {
 
-    const {producto, handleClickModal, handleAgregarPedido} = useCafe();
-
+    const {producto, handleClickModal, handleAgregarPedido, pedido} = useCafe();
     const [cantidad, setCantidad] = useState(1)
+    const [edicion, setEdicion] = useState(false)
+
+    useEffect(()=>{
+        if(pedido.some(pedidoState=>pedidoState.id === producto.id)){
+            const productoEdicion = pedido.filter(pedidoState=>pedidoState.id === producto.id)[0]
+            setCantidad(productoEdicion.cantidad)
+            setEdicion(true)
+        }
+    },[pedido])
 
   return (
     <div className='md:flex gap-10'>
@@ -57,7 +65,7 @@ const ModalProducto = () => {
                     handleClickModal()
                 }}
             
-            >Añadir al pedido</button>
+            >{edicion ? 'Guardar Cambios' : 'Añadir al Pedido' }</button>
         </div>
     </div>
   )
