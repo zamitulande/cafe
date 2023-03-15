@@ -19,8 +19,7 @@ const customStyles = {
 
 const Layout = () => {
 
-  const {modal, handleClickModal} = useCafe();
-  console.log(modal)
+  const {modal} = useCafe();
   return (
     <>
     <div className=' md:flex'>
