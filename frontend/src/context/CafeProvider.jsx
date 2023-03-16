@@ -1,12 +1,12 @@
 import CafeContext from "./CafeContext"
 import {toast} from 'react-toastify'
-import { categorias as categoriasDB } from '../data/Categorias'
 import { useEffect, useState } from "react"
+import axios from 'axios'
 
 export const CafeProvider=({children})=>{ 
         
-    const [categorias, setCategorias] = useState(categoriasDB);
-    const [categoriaActual, setCategoriaActua] = useState(categorias[0])
+    const [categorias, setCategorias] = useState([]);
+    const [categoriaActual, setCategoriaActua] = useState({})
     const [modal, setModal] = useState(false)
     const [producto, setProducto] = useState({})
     const [pedido, setPedido] = useState([])
@@ -16,6 +16,20 @@ export const CafeProvider=({children})=>{
         const nuevoTotal =  pedido.reduce((total, producto)=>(producto.precio * producto.cantidad)+total,0)
         setTotal(nuevoTotal)
     }, [pedido])
+
+    const obtenerCategorias= async ()=>{
+        try {
+            const {data} = await axios(`${import.meta.env.VITE_API_URL}/api/categorias`)
+            setCategorias(data.data)
+            setCategoriaActua(data.data[0])
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=>{
+        obtenerCategorias()
+    }, [])
 
     const handleClickCategoria=(id)=>{
        const categoria= categorias.filter(categoria => categoria.id === id)[0]
