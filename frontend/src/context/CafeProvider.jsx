@@ -1,7 +1,7 @@
 import CafeContext from "./CafeContext"
 import {toast} from 'react-toastify'
 import { useEffect, useState } from "react"
-import axios from 'axios'
+import clienteAxios from "../config/axios"
 
 export const CafeProvider=({children})=>{ 
         
@@ -19,7 +19,7 @@ export const CafeProvider=({children})=>{
 
     const obtenerCategorias= async ()=>{
         try {
-            const {data} = await axios(`${import.meta.env.VITE_API_URL}/api/categorias`)
+            const {data} = await clienteAxios('/api/categorias')
             setCategorias(data.data)
             setCategoriaActua(data.data[0])
         } catch (error) {
