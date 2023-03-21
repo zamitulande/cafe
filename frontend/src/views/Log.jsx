@@ -22,6 +22,7 @@ const Log = () => {
             const {data}= await clienteAxios.post('/api/login', datos)
             console.log(data.token)
         } catch (error) {
+            console.log(error)
             setErrores(Object.values(error.response.data.errors))
         }
     }
@@ -53,7 +54,7 @@ const Log = () => {
                  type="email" 
                  id='email'
                  className=' mt-2 w-full p-3 bg-gray-100'
-                 name='name'
+                 name='email'
                  placeholder='Tu Email'
                  ref={emailRef}
              />
