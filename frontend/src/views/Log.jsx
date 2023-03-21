@@ -2,7 +2,7 @@ import React from 'react'
 import {createRef, useState} from 'react'
 import {Link} from 'react-router-dom'
 import Alerta from '../components/Alerta'
-import clienteAxios from "../config/axios"
+import { useAuth } from '../hooks/useAuth'
 
 const Log = () => {
 
@@ -10,6 +10,10 @@ const Log = () => {
     const passwordRef = createRef();
 
     const [errores, setErrores] = useState();
+    const {login} = useAuth({
+        middleware: 'guest',
+        url: '/'
+    })
 
     const handleSubmit =async (e)=>{
         e.preventDefault();
@@ -18,14 +22,7 @@ const Log = () => {
             email: emailRef.current.value,
             password: passwordRef.current.value,
         }
-        try {
-            const {data}= await clienteAxios.post('/api/login', datos)
-            localStorage.setItem('AUTH TOKEN', data.token)
-            setErrores([])
-        } catch (error) {
-            console.log(error)
-            setErrores(Object.values(error.response.data.errors))
-        }
+        login(datos, setErrores)
     }
   return (
     <>
