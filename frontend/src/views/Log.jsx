@@ -20,7 +20,8 @@ const Log = () => {
         }
         try {
             const {data}= await clienteAxios.post('/api/login', datos)
-            console.log(data.token)
+            localStorage.setItem('AUTH TOKEN', data.token)
+            setErrores([])
         } catch (error) {
             console.log(error)
             setErrores(Object.values(error.response.data.errors))
